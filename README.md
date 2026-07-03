@@ -221,6 +221,17 @@ Student-Management-System/
 
 ---
 
+---
+
+# 👩‍💻 Author
+
+**Nandinee**
+
+- 💻 Passionate about Full Stack Development
+- 🚀 Interested in Django, Python, JavaScript, and Web Development
+
+🌐 **GitHub:** https://github.com/Nandinee-30
+
 # 📄 License
 
 This project is developed for **educational and learning purposes**.

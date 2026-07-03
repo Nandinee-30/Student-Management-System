@@ -1,0 +1,162 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Management System</title>
+<link rel="stylesheet" href="{% static 'students/style.css' %}">
+</head>
+<body>
+  <header class="topbar">
+    <h1>🎓 Student Management System</h1>
+  </header>
+
+  <main class="container">
+    <section class="toolbar">
+      <input type="text" id="searchInput" placeholder="Search by name, roll no, email, course...">
+      <select id="courseFilter"><option value="">All Courses</option></select>
+      <select id="activeFilter">
+        <option value="">All Status</option>
+        <option value="true">Active</option>
+        <option value="false">Inactive</option>
+      </select>
+      <select id="sortField">
+        <option value="created_at">Newest</option>
+        <option value="first_name">First Name</option>
+        <option value="last_name">Last Name</option>
+        <option value="roll_number">Roll Number</option>
+        <option value="enrollment_date">Enrollment Date</option>
+        <option value="course__name">Course</option>
+      </select>
+      <select id="sortOrder">
+        <option value="desc">Desc</option>
+        <option value="asc">Asc</option>
+      </select>
+      <button id="addStudentBtn" class="btn btn-primary">+ Add Student</button>
+    </section>
+
+    <section class="table-wrapper">
+      <table id="studentsTable">
+        <thead>
+          <tr>
+            <th>Roll No.</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Course</th>
+            <th>Enrolled</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="studentsBody">
+          <tr><td colspan="8" class="empty-msg">Loading students...</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="pagination">
+      <button id="prevPage" class="btn">&laquo; Prev</button>
+      <span id="pageInfo">Page 1</span>
+      <button id="nextPage" class="btn">Next &raquo;</button>
+    </section>
+  </main>
+
+  <!-- Add / Edit Modal -->
+  <div id="studentModal" class="modal hidden">
+    <div class="modal-content">
+      <h2 id="modalTitle">Add Student</h2>
+      <form id="studentForm" novalidate>
+        <input type="hidden" id="studentId">
+
+        <div class="form-row">
+          <label for="roll_number">Roll Number *</label>
+          <input type="text" id="roll_number" required maxlength="20">
+          <span class="error-msg" data-for="roll_number"></span>
+        </div>
+
+        <div class="form-row two-col">
+          <div>
+            <label for="first_name">First Name *</label>
+            <input type="text" id="first_name" required maxlength="50">
+            <span class="error-msg" data-for="first_name"></span>
+          </div>
+          <div>
+            <label for="last_name">Last Name *</label>
+            <input type="text" id="last_name" required maxlength="50">
+            <span class="error-msg" data-for="last_name"></span>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <label for="email">Email *</label>
+          <input type="email" id="email" required>
+          <span class="error-msg" data-for="email"></span>
+        </div>
+
+        <div class="form-row two-col">
+          <div>
+            <label for="phone">Phone *</label>
+            <input type="tel" id="phone" required placeholder="+919876543210">
+            <span class="error-msg" data-for="phone"></span>
+          </div>
+          <div>
+            <label for="gender">Gender</label>
+            <select id="gender">
+              <option value="M">Male</option>
+              <option value="F">Female</option>
+              <option value="O">Other</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row two-col">
+          <div>
+            <label for="date_of_birth">Date of Birth</label>
+            <input type="date" id="date_of_birth">
+            <span class="error-msg" data-for="date_of_birth"></span>
+          </div>
+          <div>
+            <label for="enrollment_date">Enrollment Date *</label>
+            <input type="date" id="enrollment_date" required>
+            <span class="error-msg" data-for="enrollment_date"></span>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <label for="course">Course *</label>
+          <select id="course" required>
+            <option value="">-- Select Course --</option>
+            <option value="1">BCA</option>
+            <option value="2">B.Tech</option>
+            <option value="3">B.Sc</option>
+            <option value="4">B.Com</option>
+            <option value="5">MBA</option>
+            <option value="6">MCA</option>
+          </select>
+          <span class="error-msg" data-for="course"></span>
+        </div>
+
+        <div class="form-row">
+          <label for="address">Address</label>
+          <textarea id="address" rows="2"></textarea>
+        </div>
+
+        <div class="form-row checkbox-row">
+          <label><input type="checkbox" id="is_active" checked> Active</label>
+        </div>
+
+        <div class="modal-actions">
+          <button type="button" id="cancelBtn" class="btn">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div id="toast" class="toast hidden"></div>
+
+  <script src="{% static 'students/script.js' %}"></script>
+</body>
+</html>

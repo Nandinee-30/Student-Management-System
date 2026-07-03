@@ -1,0 +1,10 @@
+[
+  {"model": "students.department", "pk": 1, "fields": {"name": "Computer Science"}},
+  {"model": "students.department", "pk": 2, "fields": {"name": "Commerce"}},
+  {"model": "students.department", "pk": 3, "fields": {"name": "Mechanical Engineering"}},
+
+  {"model": "students.course", "pk": 1, "fields": {"name": "B.Tech CSE", "department": 1, "duration_years": 4}},
+  {"model": "students.course", "pk": 2, "fields": {"name": "BCA", "department": 1, "duration_years": 3}},
+  {"model": "students.course", "pk": 3, "fields": {"name": "B.Com", "department": 2, "duration_years": 3}},
+  {"model": "students.course", "pk": 4, "fields": {"name": "B.Tech Mechanical", "department": 3, "duration_years": 4}}
+]
